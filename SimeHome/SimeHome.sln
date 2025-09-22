@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimeHome", "SimeHome.csproj", "{E396EDEB-4A8B-4489-AEE7-B04F322128AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E396EDEB-4A8B-4489-AEE7-B04F322128AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E396EDEB-4A8B-4489-AEE7-B04F322128AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E396EDEB-4A8B-4489-AEE7-B04F322128AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E396EDEB-4A8B-4489-AEE7-B04F322128AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66433678-0683-4D13-9FE1-CF712E744D9C}
+	EndGlobalSection
+EndGlobal

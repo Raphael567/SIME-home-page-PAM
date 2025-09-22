@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimeHome.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <FlexLayout
+                Direction="Row"
+                JustifyContent="SpaceBetween"
+                AlignItems="Center"
+                Wrap="NoWrap">
+                <Image
+                    Source="logo_branca.png"
+                    HeightRequest="25"
+                    Aspect="AspectFit" />
+
+                <HorizontalStackLayout Spacing="25">
+                    <Image
+                        Source="sino.png"
+                        HeightRequest="20"
+                        Aspect="AspectFit" />
+
+                    <Image
+                        Source="perfil.png"
+                        HeightRequest="20"
+                        Aspect="AspectFit" />
+                </HorizontalStackLayout>
+            </FlexLayout>
+
+            <Label
+                Text="Locais"
+                FontSize="25"
+                TextColor="#44A1A0"/>
+
+            <Grid RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <HorizontalStackLayout Spacing="20" Grid.Row="0">
+                    <Label
+                        Text="Filtrar por: "
+                        FontSize="12"
+                        VerticalOptions="Center"/>
+
+                    <Button
+                        Text="Salas"
+                        FontSize="10"
+                        TextColor="Black"
+                        BackgroundColor="#EEEEEE"
+                        CornerRadius="20"/>
+
+                    <Button
+                        Text="Labs"
+                        FontSize="10"
+                        TextColor="Black"
+                        BackgroundColor="#EEEEEE"
+                        CornerRadius="20"/>
+
+                    <Button
+                        Text="Outros"
+                        FontSize="10"
+                        TextColor="Black"
+                        BackgroundColor="#EEEEEE"
+                        Padding="10"
+                        CornerRadius="20"/>
+
+                </HorizontalStackLayout>
+
+                <Button
+                    Text="Chamado1" Grid.Row="1"/>
+                
+                <Button
+                    Text="Chamado2" Grid.Row="2"/>
+                
+                <Button
+                    Text="Chamado3" Grid.Row="3"/>
+
+                <Button
+                    Text="Chamado4" Grid.Row="4"/>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
