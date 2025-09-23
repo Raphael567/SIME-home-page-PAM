@@ -69,7 +69,7 @@
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding IsPressed}"
-                                        CommandParameter="{Binding}" />
+                                        CommandParameter="{Binding}"/>
                                 </Border.GestureRecognizers>
 
                                 <FlexLayout JustifyContent="SpaceBetween">
