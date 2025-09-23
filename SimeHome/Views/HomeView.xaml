@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SimeHome.Models"
+             xmlns:local="clr-namespace:SimeHome"
+             x:Class="SimeHome.Views.HomeView"
+             BackgroundColor="#FFF">
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="25">
+
+            <FlexLayout
+                Direction="Row"
+                JustifyContent="SpaceBetween"
+                AlignItems="Center"
+                Wrap="NoWrap">
+
+                <Image
+                    Source="logo_branca.png"
+                    HeightRequest="60"
+                    Aspect="AspectFit"/>
+
+                <HorizontalStackLayout Spacing="25">
+                    <Image
+                        Source="sino.png"
+                        HeightRequest="20"
+                        Aspect="AspectFit"/>
+
+                    <Image
+                        Source="perfil.png"
+                        HeightRequest="30"
+                        Aspect="AspectFit"/>
+                </HorizontalStackLayout>
+            </FlexLayout>
+
+            <Label
+                Text="Locais"
+                FontFamily="MontserratSemiBold"
+                FontSize="25"
+                TextColor="#44A1A0"/>
+
+            <VerticalStackLayout Spacing="20">
+                
+                <HorizontalStackLayout Spacing="20">
+                    <Label
+                        Text="Filtrar por: "
+                        TextColor="#000"
+                        FontSize="14"
+                        VerticalOptions="Center"/>
+
+                    <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Filtros}" Spacing="30">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Text="{Binding}"
+                                    Style="{StaticResource FilterBtn}"/>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Salas}" Spacing="30">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <Border Style="{StaticResource ChamadoCardBorder}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding IsPressed}"
+                                        CommandParameter="{Binding}" />
+                                </Border.GestureRecognizers>
+
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <Label
+                                        Text="{Binding Num, StringFormat='Sala {0}'}"
+                                        TextColor="#000"
+                                        FontSize="18"
+                                        VerticalTextAlignment="Center"/>
+
+                                    <HorizontalStackLayout Spacing="15">
+                                        <Border Style="{StaticResource CardLineBorder}"/>
+
+                                        <VerticalStackLayout VerticalOptions="Center">
+                                            <Label
+                                                Text="{Binding NumChamados}"
+                                                TextColor="Black"
+                                                FontSize="18"
+                                                HorizontalOptions="Center"/>
+                                            <Label
+                                                Text="Chamados"
+                                                TextColor="Black"
+                                                FontSize="12"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </FlexLayout>
+                            </Border>
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
