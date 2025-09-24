@@ -5,105 +5,279 @@
              xmlns:local="clr-namespace:SimeHome"
              x:Class="SimeHome.Views.HomeView"
              BackgroundColor="#FFF">
-    
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30"
-            Spacing="25">
 
-            <FlexLayout
-                Direction="Row"
-                JustifyContent="SpaceBetween"
-                AlignItems="Center"
-                Wrap="NoWrap">
+    <AbsoluteLayout>
+        <ScrollView 
+            AbsoluteLayout.LayoutBounds="0,0,1,1" 
+            AbsoluteLayout.LayoutFlags="All">
 
-                <Image
-                    Source="logo_branca.png"
-                    HeightRequest="60"
-                    Aspect="AspectFit"/>
+            <VerticalStackLayout
+                Padding="30"
+                Spacing="25">
 
-                <HorizontalStackLayout Spacing="25">
-                    <Image
-                        Source="sino.png"
-                        HeightRequest="20"
-                        Aspect="AspectFit"/>
+                <!--#region Header -->
+                <FlexLayout
+                    Direction="Row"
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    Wrap="NoWrap">
 
                     <Image
-                        Source="perfil.png"
-                        HeightRequest="30"
+                        Source="logo_branca.png"
+                        HeightRequest="40"
                         Aspect="AspectFit"/>
-                </HorizontalStackLayout>
-            </FlexLayout>
 
-            <Label
-                Text="Locais"
-                FontFamily="MontserratSemiBold"
-                FontSize="25"
-                TextColor="#44A1A0"/>
+                    <HorizontalStackLayout Spacing="25">
+                        <Image
+                            Source="sino.png"
+                            HeightRequest="20"
+                            Aspect="AspectFit"/>
 
-            <VerticalStackLayout Spacing="20">
-                
-                <HorizontalStackLayout Spacing="20">
-                    <Label
-                        Text="Filtrar por: "
-                        TextColor="#000"
-                        FontSize="14"
-                        VerticalOptions="Center"/>
+                        <Image
+                            Source="perfil.png"
+                            HeightRequest="30"
+                            Aspect="AspectFit"/>
+                    </HorizontalStackLayout>
+                </FlexLayout>
 
-                    <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Filtros}" Spacing="30">
+                <Label
+                    Text="Locais"
+                    FontSize="30"
+                    Style="{StaticResource SimeTitle}"/>
+                <!--#endregion-->
+
+                <!--#region Main -->
+                <VerticalStackLayout Spacing="50">
+
+                    <!--#region Filtros-->
+                    <HorizontalStackLayout Spacing="20">
+                        <Label
+                            Text="Filtrar por: "
+                            TextColor="#000"
+                            FontSize="14"
+                            VerticalOptions="Center"/>
+
+                        <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Filtros}" Spacing="30">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Text="{Binding}"
+                                        Style="{StaticResource FilterBtn}"/>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                    <!--#endregion-->
+
+                    <!--#region Chamados -->
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Salas}" Spacing="30">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Button
-                                    Text="{Binding}"
-                                    Style="{StaticResource FilterBtn}"/>
+
+                                <Border Style="{StaticResource ChamadoCardBorder}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding IsPressed}"
+                                            CommandParameter="{Binding}"/>
+                                    </Border.GestureRecognizers>
+
+                                    <FlexLayout JustifyContent="SpaceBetween">
+                                        <Label
+                                            Text="{Binding Num, StringFormat='Sala {0}'}"
+                                            TextColor="#000"
+                                            FontSize="18"
+                                            VerticalTextAlignment="Center"/>
+
+                                        <HorizontalStackLayout Spacing="15">
+                                            <Border Style="{StaticResource CardLineBorder}"/>
+
+                                            <VerticalStackLayout VerticalOptions="Center">
+                                                <Label
+                                                    Text="{Binding NumChamados}"
+                                                    TextColor="Black"
+                                                    FontSize="18"
+                                                    HorizontalOptions="Center"/>
+                                                <Label
+                                                    Text="Chamados"
+                                                    TextColor="Black"
+                                                    FontSize="12"/>
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                    </FlexLayout>
+                                </Border>
+
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
-                    </HorizontalStackLayout>
-                </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <!--#endregion-->
 
-                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Salas}" Spacing="30">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
+                    <Border Stroke="#80000000"/>
+                </VerticalStackLayout>
 
-                            <Border Style="{StaticResource ChamadoCardBorder}">
-                                <Border.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding IsPressed}"
-                                        CommandParameter="{Binding}"/>
-                                </Border.GestureRecognizers>
+                <!--#region Datas -->
+                <VerticalStackLayout Spacing="30" Margin="0,0,0,100">
 
-                                <FlexLayout JustifyContent="SpaceBetween">
-                                    <Label
-                                        Text="{Binding Num, StringFormat='Sala {0}'}"
-                                        TextColor="#000"
-                                        FontSize="18"
-                                        VerticalTextAlignment="Center"/>
+                    <!--#region Calendário -->
+                    <VerticalStackLayout 
+                            Spacing="10" 
+                            HorizontalOptions="Center" 
+                            Margin="0,30,0,0">
 
-                                    <HorizontalStackLayout Spacing="15">
-                                        <Border Style="{StaticResource CardLineBorder}"/>
+                        <Label 
+                                Text="Setembro - 2025"
+                                FontSize="17"
+                                Style="{StaticResource SimeTitle}"
+                                Margin="0,0,0,10"/>
 
-                                        <VerticalStackLayout VerticalOptions="Center">
+                        <!-- Cabeçalho com dias da semana -->
+                        <Grid ColumnSpacing="35">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="S" Grid.Column="0" HorizontalOptions="Center" TextColor="#3A8D8D" />
+                            <Label Text="T" Grid.Column="1" HorizontalOptions="Center" TextColor="#3A8D8D" />
+                            <Label Text="Q" Grid.Column="2" HorizontalOptions="Center" TextColor="#3A8D8D" />
+                            <Label Text="Q" Grid.Column="3" HorizontalOptions="Center" TextColor="#3A8D8D" />
+                            <Label Text="S" Grid.Column="4" HorizontalOptions="Center" TextColor="#3A8D8D" />
+                            <Label Text="S" Grid.Column="5" HorizontalOptions="Center" TextColor="#3A8D8D" />
+                            <Label Text="D" Grid.Column="6" HorizontalOptions="Center" TextColor="#3A8D8D" />
+                        </Grid>
+
+                        <!-- Dias do mês -->
+                        <Grid RowSpacing="15" ColumnSpacing="20" Padding="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Primeira linha -->
+                            <Label Text="1" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" />
+                            <Label Text="2" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" />
+                            <Label Text="3" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" />
+                            <Label Text="4" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" />
+                            <Label Text="5" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" />
+                            <Label Text="6" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" />
+                            <Label Text="7" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" />
+
+                            <!-- Segunda linha -->
+                            <Label Text="8"  Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" />
+                            <Label Text="9"  Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" />
+                            <Label Text="10" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" />
+                            <Label Text="11" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" />
+                            <Label Text="12" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" />
+                            <Label Text="13" Grid.Row="1" Grid.Column="5" HorizontalOptions="Center" />
+                            <Label Text="14" Grid.Row="1" Grid.Column="6" HorizontalOptions="Center" />
+
+                            <!-- Terceira linha -->
+                            <Label Text="15" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" />
+                            <Label Text="16" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" />
+                            <Label Text="17" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" />
+                            <Label Text="18" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" />
+                            <Label Text="19" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center" />
+                            <Label Text="20" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center" />
+                            <Label Text="21" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center" />
+
+                            <!-- Quarta linha -->
+                            <Label Text="22" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" />
+                            <Label Text="23" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" />
+                            <Label Text="24" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" />
+                            <Label Text="25" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center" />
+                            <Label Text="26" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center" />
+                            <Label Text="27" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center" />
+                            <Label Text="28" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" />
+
+                            <!-- Quinta linha -->
+                            <Label Text="29" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" />
+                            <Label Text="30" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                    <!--#endregion-->
+
+                    <!--#region Semana -->
+                    <Border 
+                        BackgroundColor="#CCF1EEF6" 
+                        HorizontalOptions="Center"
+                        StrokeShape="10"
+                        StrokeThickness="0">
+
+                        <VerticalStackLayout Spacing="15" Padding="25, 8, 25, 25">
+                            <Label
+                                Text="Semana"
+                                FontSize="15"
+                                Style="{StaticResource SimeTitle}"/>
+
+                            <FlexLayout
+                                    BindableLayout.ItemsSource="{Binding Semana}"
+                                    JustifyContent="SpaceBetween"
+                                    AlignItems="Center">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <VerticalStackLayout>
                                             <Label
-                                                Text="{Binding NumChamados}"
-                                                TextColor="Black"
-                                                FontSize="18"
+                                                Text="{Binding Dia}"
+                                                TextColor="#000"
                                                 HorizontalOptions="Center"/>
                                             <Label
-                                                Text="Chamados"
-                                                TextColor="Black"
-                                                FontSize="12"/>
+                                                Text="{Binding Nome}"
+                                                TextColor="#757575"/>
                                         </VerticalStackLayout>
-                                    </HorizontalStackLayout>
-                                </FlexLayout>
-                            </Border>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </FlexLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--#endregion-->
 
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
-            
-                <Border/>
+                <!--#endregion-->
+
+                <!--#endregion-->
+
             </VerticalStackLayout>
 
-        </VerticalStackLayout>
-    </ScrollView>
+        </ScrollView>
+        
+        <!--#region Footer -->
+        <FlexLayout
+            AbsoluteLayout.LayoutBounds="0,1,1,72"
+            AbsoluteLayout.LayoutFlags="WidthProportional, PositionProportional"
+            BackgroundColor="#44A1A0"
+            JustifyContent="SpaceBetween"
+            AlignItems="Center"
+            Padding="40, 0"
+            BindableLayout.ItemsSource="{Binding FooterIcons}">
+
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <ImageButton
+                        Source="{Binding}"
+                        Padding="10"
+                        CornerRadius="100"
+                        Aspect="AspectFit"/>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+        <!--#endregion-->
+        
+    </AbsoluteLayout>
 </ContentPage>

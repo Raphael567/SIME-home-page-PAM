@@ -60,11 +60,40 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Resources\Images\footer_icons\**" />
+	  <Compile Remove="Resources\Images\footer_icons\**" />
+	  <EmbeddedResource Remove="Resources\Images\footer_icons\**" />
+	  <MauiCss Remove="Resources\Images\footer_icons\**" />
+	  <MauiImage Remove="Resources\Images\footer_icons\**" />
+	  <MauiXaml Remove="Resources\Images\footer_icons\**" />
+	  <None Remove="Resources\Images\footer_icons\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\FooterIcons\concluidas.png" />
+	  <None Remove="Resources\Images\FooterIcons\criar.png" />
+	  <None Remove="Resources\Images\FooterIcons\criar_chamado.png" />
+	  <None Remove="Resources\Images\FooterIcons\home.png" />
+	  <None Remove="Resources\Images\FooterIcons\pendentes.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\FooterIcons\concluidas.png" />
+	  <MauiImage Include="Resources\Images\FooterIcons\criar.png" />
+	  <MauiImage Include="Resources\Images\FooterIcons\criar_chamado.png" />
+	  <MauiImage Include="Resources\Images\FooterIcons\home.png" />
+	  <MauiImage Include="Resources\Images\FooterIcons\pendentes.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\SimeStyle\Labels.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\SimeStyle\Borders.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

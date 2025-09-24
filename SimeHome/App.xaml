@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/SimeStyle/Buttons.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/SimeStyle/Borders.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/SimeStyle/Labels.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
