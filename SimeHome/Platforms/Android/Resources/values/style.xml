@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<style name="Maui.SplashTheme" parent="Theme.Maui.Splash">
+		<item name="android:windowBackground">@color/maui_splash_background</item>
+	</style>
+</resources>
